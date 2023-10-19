@@ -1,0 +1,47 @@
+.formContainer {
+  display: grid;
+  grid-template-areas:
+    "name comment"
+    "email comment"
+    "rating comment"
+    "button button";
+  gap: 0.5em;
+
+  @media screen and (max-width: 400px) {
+    display: block;
+  }
+
+  & > * {
+    margin-bottom: 0;
+  }
+}
+
+.inputTitle {
+  margin: 0.1em;
+}
+
+.name {
+  grid-area: name;
+}
+
+.email {
+  grid-area: email;
+}
+
+.rating {
+  grid-area: rating;
+}
+
+.comment {
+  grid-area: comment;
+}
+
+.button {
+  grid-area: button;
+  display: flex;
+  justify-content: end;
+
+  @media screen and (max-width: 400px) {
+    margin-top: 2em;
+  }
+}
