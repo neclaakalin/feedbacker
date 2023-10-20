@@ -1,32 +1,19 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Typography, Input, Rate, Button, Form, message } from "antd";
+import { Input, Rate, Button, Form, message } from "antd";
 import { FeedbackType } from "../../utils/types";
+import { ratings, validationMessages } from "../../utils/values";
 import { MOCK_ENDPOINT, SHOW_FEEDBACKS_ROUTE } from "../../utils/constants";
 import PageContainer from "../../components/PageContainer/PageContainer";
 import Header from "../../components/Header/Header";
+import { useTranslation } from "react-i18next";
 import st from "./GiveFeedback.module.scss";
 
-const { Title } = Typography;
 const { TextArea } = Input;
-
-const ratingDescriptions = ["terrible", "bad", "normal", "good", "wonderful"];
-
-const validateMessages = {
-  required: "${label} is required!",
-  types: {
-    email: "${label} is not a valid email!",
-    number: "${label} is not a valid number!",
-  },
-  number: {
-    range: "${label} must be between ${min} and ${max}",
-  },
-};
 
 const GiveFeedback: React.FunctionComponent = () => {
   const navigate = useNavigate();
-  const [form] = Form.useForm();
-  const [messageApi, contextHolder] = message.useMessage();
+  const { t } = useTranslation();
 
   const handleFormSubmit = (values: FeedbackType) => {
     const requestOptions = {
@@ -41,65 +28,69 @@ const GiveFeedback: React.FunctionComponent = () => {
         }
       })
       .catch(() => {
-        message.error("Something went wrong, please try again");
+        message.error(t("SHOW.ERROR_MESSAGE"));
       });
   };
 
   return (
     <PageContainer>
       <Header
-        title="Give Feedback"
-        buttonText="Show Feedbacks"
-        buttonClick={() => navigate(SHOW_FEEDBACKS_ROUTE)}
+        title={t("GIVE.HEADER")}
+        buttonText={t("GIVE.SHOW_FEEDBACKS_BUTTON")}
+        onButtonClick={() => navigate(SHOW_FEEDBACKS_ROUTE)}
       />
       <Form
-        form={form}
         layout="vertical"
         className={st.formContainer}
         onFinish={handleFormSubmit}
-        validateMessages={validateMessages}
+        validateMessages={validationMessages(t)}
       >
         <Form.Item
           name={"name"}
-          label="Name"
+          label={t("GIVE.NAME_LABEL")}
           className={st.name}
           rules={[{ required: true }]}
         >
-          <Input maxLength={100} placeholder="Please enter your full name" />
+          <Input maxLength={100} placeholder={t("GIVE.NAME_PLACEHOLDER")} />
         </Form.Item>
         <Form.Item
           name={"email"}
-          label="Email"
+          label={t("GIVE.EMAIL_LABEL")}
           className={st.email}
           rules={[{ type: "email", required: true }]}
         >
-          <Input maxLength={100} placeholder="Please enter your email" />
+          <Input maxLength={100} placeholder={t("GIVE.EMAIL_PLACEHOLDER")} />
         </Form.Item>
         <Form.Item
           name={"rating"}
-          label="Rating"
+          label={t("GIVE.RATING_LABEL")}
           className={st.rating}
           rules={[{ required: true }]}
         >
-          <Rate tooltips={ratingDescriptions} />
+          <Rate tooltips={ratings.map((rating) => t(`RATING.${rating}`))} />
         </Form.Item>
         <Form.Item
           name={"comment"}
-          label="Comment"
+          label={t("GIVE.COMMENT_LABEL")}
           className={st.comment}
           rules={[{ required: true, min: 10 }]}
         >
           <TextArea
             rows={6}
             maxLength={3000}
-            placeholder="Please enter your comment"
+            placeholder={t("GIVE.COMMENT_PLACEHOLDER")}
             style={{ resize: "none" }}
             showCount
           />
         </Form.Item>
         <Form.Item className={st.button}>
-          <Button type="primary" htmlType="submit" size="large">
-            Submit
+          <Button
+            type="primary"
+            htmlType="submit"
+            size="large"
+            data-testid="feedbacker-submit-form-btn"
+          >
+            {t("GIVE.SUBMIT_BUTTON")}
           </Button>
         </Form.Item>
       </Form>

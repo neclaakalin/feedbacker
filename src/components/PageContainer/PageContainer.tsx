@@ -4,7 +4,7 @@ import st from "./PageContainer.module.scss";
 const PageContainer: React.FunctionComponent<{ children?: ReactNode }> = ({
   children,
 }) => (
-  <span className={st.page}>
+  <span className={st.page} data-testid="feedbacker-page">
     <span className={st.container}>{children}</span>
   </span>
 );

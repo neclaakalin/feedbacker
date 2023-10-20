@@ -7,18 +7,18 @@ const { Title } = Typography;
 type HeaderProps = {
   title?: string;
   buttonText?: string;
-  buttonClick?: () => void;
+  onButtonClick?: () => void;
 };
 
 const Header: React.FunctionComponent<HeaderProps> = ({
   title,
   buttonText,
-  buttonClick,
+  onButtonClick,
 }) => (
-  <span className={st.header}>
-    <Title level={2}>{title}</Title>
-    {buttonClick && (
-      <Button size="large" onClick={buttonClick}>
+  <span className={st.header} data-testid="feedbacker-header">
+    {title && <Title level={2}>{title}</Title>}
+    {onButtonClick && (
+      <Button size="large" onClick={onButtonClick}>
         {buttonText}
       </Button>
     )}

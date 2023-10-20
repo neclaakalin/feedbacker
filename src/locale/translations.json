@@ -1,0 +1,48 @@
+{
+  "en": {
+    "translation": {
+      "GIVE": {
+        "HEADER": "Give Feedback",
+        "SHOW_FEEDBACKS_BUTTON": "Show Feedbacks",
+        "NAME_LABEL": "Name",
+        "NAME_PLACEHOLDER": "Please enter your full name",
+        "EMAIL_LABEL": "Email",
+        "EMAIL_PLACEHOLDER": "Please enter your full email",
+        "COMMENT_LABEL": "Comment",
+        "COMMENT_PLACEHOLDER": "Please enter your full comment",
+        "RATING_LABEL": "Rating",
+        "SUBMIT_BUTTON": "Submit"
+      },
+      "SHOW": {
+        "HEADER": "Feedbacks",
+        "GIVE_FEEDBACK_BUTTON": "Give Feedback",
+        "ERROR_MESSAGE": "Something went wrong, please try again",
+        "EMPTY_LIST_MESSAGE": "Ups, no item to show here!",
+        "LATEST_COMMENTS": "Latest Comments"
+      },
+      "RATING": {
+        "TERRIBLE": "terrible",
+        "BAD": "bad",
+        "NORMAL": "normal",
+        "GOOD": "good",
+        "WONDERFUL": "wonderful"
+      },
+      "CHART": {
+        "YAXIS": "count"
+      },
+      "FORM": {
+        "REQUIRED": "${label} is required!",
+        "TYPES": {
+          "EMAIL": "${label} is not a valid email!",
+          "NUMBER": "${label} is not a valid number!"
+        },
+        "NUMBER": {
+          "RANGE": "${label} must be between ${min} and ${max}"
+        },
+        "STRING": {
+          "MIN": "${label} must be at least ${min} characters"
+        }
+      }
+    }
+  }
+}

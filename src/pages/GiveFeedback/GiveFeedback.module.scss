@@ -5,6 +5,7 @@
     "email comment"
     "rating comment"
     "button button";
+  grid-template-columns: 1fr 1fr;
   gap: 0.5em;
 
   @media screen and (max-width: 400px) {
